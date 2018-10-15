@@ -37,6 +37,22 @@ public class ConnectToMongoDB {
         collection.insertOne(document);
         return profile + " has been registered";
     }
+     public  List<Integer> insertArrayList(List<Integer> list1){
+        List<Integer> retList = new ArrayList<>();
+        MongoDatabase mongoDatabase = connectToMongoDB();
+        MongoCollection<Document> collection = mongoDatabase.getCollection("arrayList");
+        Document document = new Document().append("element",list1);
+        collection.insertOne(document);
+
+        BasicDBObject basicDBObject = new BasicDBObject();
+        FindIterable<Document> iterable = collection.find(basicDBObject);
+        for(Document doc:iterable) {
+            Integer element = (Integer) doc.get("element");
+            retList.add(element);
+        }
+        return retList;
+    }
+
 
     public String insertIntoMongoDB(List<Student> student,String profileName){
         MongoDatabase mongoDatabase = connectToMongoDB();

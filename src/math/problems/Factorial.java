@@ -1,9 +1,25 @@
 package math.problems;
 
+import java.util.Iterator;
+
 /**
  * Created by mrahman on 04/02/18.
  */
 public class Factorial {
+    public static int Recursion (int number){
+
+        if(number==1) return number;
+        else number = number * Recursion (number-1);
+
+
+        return number;
+    }
+    public static int Iteration(int number){
+        int fact = 1;
+        for(int i=1;i<number;i++)
+            fact = fact * (i+1);
+        return fact;
+    }
 
     public static void main(String[] args) {
         /*
@@ -11,6 +27,10 @@ public class Factorial {
          * Write a java program to find Factorial of a given number using Recursion as well as Iteration.
          *
          */
+        System.out.println("Factorial Number using recursion: ");
+        System.out.println(Recursion(5));
+        System.out.println("Factorial Number using iteration: ");
+        System.out.println(Iteration(5));
 
     }
 }
